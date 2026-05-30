@@ -1,0 +1,384 @@
+/* ── Variables ─────────────────────────────────────────────────────────── */
+:root {
+  --parchment: #fdf5e6;
+  --parchment-dark: #f0e6cc;
+  --dark-ink: #2c1e16;
+  --ink-mid: #5a3e2b;
+  --gold: #d4af37;
+  --gold-dark: #a8882a;
+  --correct-green: #3a6b47;
+  --incorrect-red: #8b2a2a;
+  --font-serif: Georgia, "Times New Roman", serif;
+  --max-width: 720px;
+}
+
+/* ── Reset & Base ──────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--parchment);
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 28px,
+    rgba(44, 30, 22, 0.04) 28px,
+    rgba(44, 30, 22, 0.04) 29px
+  );
+  color: var(--dark-ink);
+  font-family: var(--font-serif);
+  min-height: 100vh;
+  padding-bottom: 3rem;
+}
+
+/* ── Score Badge ───────────────────────────────────────────────────────── */
+#score-display {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 200;
+  background: var(--dark-ink);
+  color: var(--gold);
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.4rem 0.9rem;
+  border: 2px solid var(--gold);
+  border-radius: 3px;
+  letter-spacing: 0.03em;
+  pointer-events: none;
+}
+
+/* ── Navigation ────────────────────────────────────────────────────────── */
+.main-nav {
+  display: flex;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0.75rem 1rem;
+  background: var(--dark-ink);
+  border-bottom: 3px solid var(--gold);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.main-nav a {
+  color: var(--parchment);
+  text-decoration: none;
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  padding: 0.4rem 1.1rem;
+  border-radius: 2px;
+  transition: background 0.15s, color 0.15s;
+  letter-spacing: 0.04em;
+}
+
+.main-nav a:hover {
+  background: rgba(212, 175, 55, 0.2);
+  color: var(--gold);
+}
+
+.main-nav a.active {
+  color: var(--gold);
+  border-bottom: 2px solid var(--gold);
+}
+
+/* ── Page wrapper ──────────────────────────────────────────────────────── */
+.page-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 2rem 1.25rem 1rem;
+}
+
+/* ── Cover Page (index.html) ───────────────────────────────────────────── */
+.cover-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 55px);
+  text-align: center;
+  padding: 2rem 1.5rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.book-decoration {
+  width: 4px;
+  height: 80px;
+  background: linear-gradient(to bottom, var(--gold), var(--gold-dark));
+  margin-bottom: 1.5rem;
+  border-radius: 2px;
+}
+
+.book-title {
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+  color: var(--dark-ink);
+  margin-bottom: 0.75rem;
+}
+
+.book-subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  color: var(--ink-mid);
+  font-style: italic;
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.04em;
+}
+
+.route-label {
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  margin-bottom: 0.4rem;
+}
+
+/* ── Buttons ───────────────────────────────────────────────────────────── */
+.btn {
+  display: inline-block;
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  cursor: pointer;
+  border: 2px solid var(--dark-ink);
+  border-radius: 3px;
+  padding: 0.75rem 2rem;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  min-height: 52px;
+  letter-spacing: 0.03em;
+}
+
+.btn-primary {
+  background: var(--gold);
+  color: var(--dark-ink);
+  border-color: var(--gold-dark);
+  font-weight: bold;
+}
+
+.btn-primary:hover {
+  background: var(--gold-dark);
+  color: var(--parchment);
+}
+
+.btn-answer {
+  background: var(--parchment);
+  color: var(--dark-ink);
+  border-color: var(--ink-mid);
+  width: 100%;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  min-height: 56px;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.btn-answer:hover:not(:disabled) {
+  background: var(--parchment-dark);
+  border-color: var(--dark-ink);
+}
+
+.btn-answer:disabled {
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.btn-answer.correct {
+  background: var(--correct-green);
+  color: #fff;
+  border-color: var(--correct-green);
+}
+
+.btn-answer.incorrect {
+  background: var(--incorrect-red);
+  color: #fff;
+  border-color: var(--incorrect-red);
+}
+
+/* ── GPS Panel (map.html) ──────────────────────────────────────────────── */
+.gps-panel {
+  background: var(--parchment-dark);
+  border: 1px solid var(--gold-dark);
+  border-radius: 3px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.75rem;
+}
+
+.gps-panel h2 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: var(--ink-mid);
+  letter-spacing: 0.04em;
+}
+
+#geo-status {
+  font-style: italic;
+  color: var(--ink-mid);
+  font-size: 0.95rem;
+  margin-bottom: 0.4rem;
+}
+
+#coords-display {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.95rem;
+  color: var(--dark-ink);
+  letter-spacing: 0.06em;
+  min-height: 1.4em;
+}
+
+/* ── Milestone Cards (map.html) ────────────────────────────────────────── */
+.milestone-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.milestone-card {
+  background: var(--parchment);
+  border: 1px solid var(--parchment-dark);
+  border-left: 4px solid var(--gold-dark);
+  border-radius: 2px;
+  padding: 1rem 1.25rem;
+  transition: border-left-color 0.2s, background 0.2s, box-shadow 0.2s;
+  position: relative;
+}
+
+.milestone-card h2 {
+  font-size: 1.05rem;
+  margin-bottom: 0.4rem;
+  color: var(--dark-ink);
+}
+
+.card-story {
+  font-style: italic;
+  font-size: 0.93rem;
+  color: var(--ink-mid);
+  line-height: 1.6;
+  margin-bottom: 0.4rem;
+}
+
+.card-coords {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.78rem;
+  color: var(--ink-mid);
+  opacity: 0.7;
+}
+
+.milestone-card.nearest {
+  border-left-color: var(--gold);
+  background: #fdf0c0;
+  box-shadow: 0 2px 12px rgba(212, 175, 55, 0.35);
+}
+
+.milestone-card.nearest::before {
+  content: "📍 You are here";
+  display: block;
+  font-size: 0.8rem;
+  font-style: normal;
+  font-weight: bold;
+  color: var(--gold-dark);
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.04em;
+}
+
+/* ── Trivia Chapters (game.html) ───────────────────────────────────────── */
+.trivia-chapter {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--parchment-dark);
+}
+
+.trivia-chapter:last-child {
+  border-bottom: none;
+}
+
+.trivia-chapter h2 {
+  font-size: 1.3rem;
+  color: var(--dark-ink);
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--gold);
+  display: inline-block;
+}
+
+.chapter-story {
+  font-style: italic;
+  color: var(--ink-mid);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  margin: 0.75rem 0 1.25rem;
+  padding-left: 1rem;
+  border-left: 3px solid var(--parchment-dark);
+}
+
+.question-block {
+  margin-bottom: 1.5rem;
+}
+
+.question-text {
+  font-size: 1.05rem;
+  font-weight: bold;
+  color: var(--dark-ink);
+  margin-bottom: 0.85rem;
+  line-height: 1.5;
+}
+
+.answer-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.fact {
+  font-style: italic;
+  font-size: 0.93rem;
+  color: var(--dark-ink);
+  line-height: 1.6;
+  padding: 0.6rem 0.9rem;
+  border-left: 3px solid var(--gold);
+  background: rgba(212, 175, 55, 0.08);
+  border-radius: 0 2px 2px 0;
+}
+
+.fact.hidden {
+  display: none;
+}
+
+/* ── Page headings ─────────────────────────────────────────────────────── */
+.page-inner h1 {
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  color: var(--dark-ink);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid var(--gold);
+  letter-spacing: 0.02em;
+}
+
+/* ── Mobile ────────────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .answer-buttons {
+    grid-template-columns: 1fr;
+  }
+
+  .main-nav a {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.7rem;
+  }
+
+  .book-title {
+    font-size: 2rem;
+  }
+
+  .trivia-chapter h2 {
+    font-size: 1.1rem;
+  }
+}
