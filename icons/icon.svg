@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" fill="#2c1e16"/>
+  <!-- Open book -->
+  <g transform="translate(256 270)">
+    <path d="M-150 -60 Q-80 -90 0 -60 L0 90 Q-80 60 -150 90 Z" fill="#fdf5e6" stroke="#d4af37" stroke-width="6"/>
+    <path d="M150 -60 Q80 -90 0 -60 L0 90 Q80 60 150 90 Z" fill="#fdf5e6" stroke="#d4af37" stroke-width="6"/>
+    <line x1="-110" y1="-40" x2="-30" y2="-58" stroke="#a8882a" stroke-width="5"/>
+    <line x1="-110" y1="-10" x2="-30" y2="-28" stroke="#a8882a" stroke-width="5"/>
+    <line x1="-110" y1="20" x2="-30" y2="2" stroke="#a8882a" stroke-width="5"/>
+    <line x1="110" y1="-40" x2="30" y2="-58" stroke="#a8882a" stroke-width="5"/>
+    <line x1="110" y1="-10" x2="30" y2="-28" stroke="#a8882a" stroke-width="5"/>
+    <line x1="110" y1="20" x2="30" y2="2" stroke="#a8882a" stroke-width="5"/>
+  </g>
+  <!-- Gold 401 banner -->
+  <text x="256" y="150" font-family="Georgia, serif" font-size="96" font-weight="bold"
+        fill="#d4af37" text-anchor="middle">401</text>
+</svg>

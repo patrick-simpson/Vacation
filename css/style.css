@@ -363,6 +363,358 @@ body {
   letter-spacing: 0.02em;
 }
 
+/* ══════════════════════════════════════════════════════════════════════════
+   v2 — Multiplayer, Memory, GPS, Audio & Accessibility
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Night mode (low-glare evening driving) ────────────────────────────── */
+body.theme-night {
+  --parchment: #1c1814;
+  --parchment-dark: #14110d;
+  --dark-ink: #ece3cf;
+  --ink-mid: #c9b48a;
+  --gold: #e0c25a;
+  --gold-dark: #b89535;
+}
+
+body.theme-night {
+  background-image: repeating-linear-gradient(
+    0deg, transparent, transparent 28px,
+    rgba(236, 227, 207, 0.04) 28px, rgba(236, 227, 207, 0.04) 29px
+  );
+}
+
+body.theme-night #score-display .badge-toggle,
+body.theme-night .main-nav { background: #0e0c09; }
+
+/* ── Large / dyslexia-friendly text ────────────────────────────────────── */
+body.text-large { font-size: 1.18rem; letter-spacing: 0.01em; }
+body.text-large .btn-answer,
+body.text-large .question-text,
+body.text-large .card-story { line-height: 1.75; }
+
+/* ── Score badge (active player + switcher) ────────────────────────────── */
+#score-display { padding: 0; border: none; background: none; }
+
+.badge-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--dark-ink);
+  color: var(--gold);
+  border: 2px solid var(--gold);
+  border-radius: 3px;
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-weight: bold;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+}
+
+.badge-score {
+  background: var(--gold);
+  color: var(--dark-ink);
+  border-radius: 2px;
+  padding: 0 0.45rem;
+  min-width: 1.4rem;
+  text-align: center;
+}
+
+.badge-menu {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  width: 250px;
+  background: var(--parchment);
+  border: 2px solid var(--gold-dark);
+  border-radius: 4px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  padding: 0.6rem;
+  z-index: 300;
+}
+
+.badge-menu-title { font-size: 0.8rem; color: var(--ink-mid); margin-bottom: 0.4rem; letter-spacing: 0.05em; }
+
+.badge-player { display: flex; align-items: center; gap: 0.3rem; margin-bottom: 0.3rem; }
+.badge-player.is-active .badge-pick { border-color: var(--gold); font-weight: bold; }
+
+.badge-pick {
+  flex: 1;
+  text-align: left;
+  background: var(--parchment-dark);
+  border: 1px solid var(--ink-mid);
+  border-radius: 2px;
+  padding: 0.45rem 0.5rem;
+  font-family: var(--font-serif);
+  color: var(--dark-ink);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+.badge-pick small { color: var(--ink-mid); }
+
+.badge-remove {
+  background: none; border: none; color: var(--incorrect-red);
+  font-size: 1.2rem; cursor: pointer; padding: 0 0.3rem; line-height: 1;
+}
+
+.badge-add { display: flex; gap: 0.25rem; margin-top: 0.5rem; }
+.badge-add-name { flex: 1; min-width: 0; padding: 0.4rem; border: 1px solid var(--ink-mid); border-radius: 2px; font-family: var(--font-serif); }
+.badge-add-team { border: 1px solid var(--ink-mid); border-radius: 2px; font-family: var(--font-serif); }
+.badge-add-btn { background: var(--gold); border: 1px solid var(--gold-dark); border-radius: 2px; padding: 0 0.7rem; cursor: pointer; font-family: var(--font-serif); font-weight: bold; }
+
+/* ── Settings button + panel ───────────────────────────────────────────── */
+.settings-btn {
+  background: none;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-size: 1.1rem;
+  border-radius: 3px;
+  padding: 0.25rem 0.6rem;
+  margin-left: 0.4rem;
+  cursor: pointer;
+  line-height: 1.4;
+}
+
+.settings-panel {
+  position: fixed;
+  top: 60px;
+  right: 1rem;
+  width: 280px;
+  max-width: calc(100vw - 2rem);
+  background: var(--parchment);
+  border: 2px solid var(--gold-dark);
+  border-radius: 4px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+  padding: 1rem 1.1rem;
+  z-index: 400;
+}
+
+.settings-panel h2 {
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+  color: var(--dark-ink);
+  border-bottom: 2px solid var(--gold);
+  padding-bottom: 0.35rem;
+}
+
+.settings-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.7rem;
+  font-size: 0.95rem;
+}
+
+.settings-row select {
+  font-family: var(--font-serif);
+  padding: 0.35rem 0.4rem;
+  border: 1px solid var(--ink-mid);
+  border-radius: 2px;
+  background: var(--parchment);
+  color: var(--dark-ink);
+}
+
+.settings-toggle input { width: 22px; height: 22px; accent-color: var(--gold-dark); }
+
+/* ── Turn banner (multiplayer) ─────────────────────────────────────────── */
+.turn-banner {
+  background: var(--gold);
+  color: var(--dark-ink);
+  font-weight: bold;
+  text-align: center;
+  padding: 0.6rem 1rem;
+  border-radius: 3px;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.02em;
+}
+
+/* ── Listen (narration) buttons ────────────────────────────────────────── */
+.listen-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0 0.2rem;
+  vertical-align: middle;
+  opacity: 0.7;
+}
+.listen-btn:hover { opacity: 1; }
+
+/* ── French phrase card ────────────────────────────────────────────────── */
+.phrase-card {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px dashed var(--gold-dark);
+  border-radius: 3px;
+  padding: 0.5rem 0.8rem;
+  margin-bottom: 1.25rem;
+}
+.phrase-fr { font-weight: bold; color: var(--dark-ink); font-size: 1.05rem; }
+.phrase-en { font-style: italic; color: var(--ink-mid); font-size: 0.9rem; }
+.phrase-card .listen-btn { margin-left: auto; }
+
+/* ── Locked chapters (GPS play mode) ───────────────────────────────────── */
+.trivia-chapter.locked { opacity: 0.85; }
+.trivia-chapter.locked h2 { color: var(--ink-mid); border-bottom-color: var(--ink-mid); }
+.locked-note {
+  font-style: italic;
+  color: var(--ink-mid);
+  background: var(--parchment-dark);
+  border-left: 3px solid var(--ink-mid);
+  padding: 0.75rem 1rem;
+  border-radius: 0 2px 2px 0;
+  margin-top: 0.5rem;
+}
+
+/* ── Colorblind-safe answer cues (glyph, not color alone) ──────────────── */
+.btn-answer.correct::after { content: "  ✓"; font-weight: bold; }
+.btn-answer.incorrect::after { content: "  ✗"; font-weight: bold; }
+
+/* ── GPS progress + ETA panel ──────────────────────────────────────────── */
+.progress-track {
+  width: 100%;
+  height: 14px;
+  background: var(--parchment-dark);
+  border: 1px solid var(--gold-dark);
+  border-radius: 7px;
+  overflow: hidden;
+  margin: 0.5rem 0 0.4rem;
+}
+#progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(to right, var(--gold-dark), var(--gold));
+  transition: width 0.6s ease;
+}
+#progress-label, #eta-label {
+  font-size: 0.85rem;
+  color: var(--ink-mid);
+  margin-bottom: 0.2rem;
+}
+
+/* ── Memory tools (map cards) ──────────────────────────────────────────── */
+.card-head { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+.stamp {
+  display: none;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: var(--gold-dark);
+  border: 1px solid var(--gold-dark);
+  border-radius: 2px;
+  padding: 0.1rem 0.4rem;
+  transform: rotate(-6deg);
+}
+.milestone-card.visited .stamp { display: inline-block; }
+
+.memory-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--parchment-dark);
+}
+
+.mem-photo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: var(--parchment-dark);
+  border: 1px solid var(--ink-mid);
+  border-radius: 3px;
+  padding: 0.45rem 0.7rem;
+  cursor: pointer;
+  font-size: 0.85rem;
+  min-height: 40px;
+}
+.mem-photo input { display: none; }
+
+.photo-thumb {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border: 2px solid var(--gold-dark);
+  border-radius: 3px;
+}
+
+.mem-record {
+  background: var(--parchment-dark);
+  border: 1px solid var(--ink-mid);
+  border-radius: 3px;
+  padding: 0.45rem 0.7rem;
+  cursor: pointer;
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  min-height: 40px;
+}
+.mem-record.recording { background: var(--incorrect-red); color: #fff; border-color: var(--incorrect-red); }
+
+.memo-audio { width: 100%; margin-top: 0.4rem; }
+
+.mem-note {
+  width: 100%;
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  border: 1px solid var(--ink-mid);
+  border-radius: 3px;
+  background: var(--parchment);
+  color: var(--dark-ink);
+  resize: vertical;
+}
+
+.mem-rating .star, .mem-mood .mood {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.3rem;
+  padding: 0.1rem 0.15rem;
+  line-height: 1;
+}
+.mem-rating .star { color: var(--ink-mid); opacity: 0.4; }
+.mem-rating .star.on { color: var(--gold); opacity: 1; }
+.mem-mood .mood { filter: grayscale(1); opacity: 0.5; }
+.mem-mood .mood.on { filter: none; opacity: 1; transform: scale(1.15); }
+
+/* ── Recap page ────────────────────────────────────────────────────────── */
+.recap-section { margin-bottom: 2rem; }
+.recap-section h2 {
+  font-size: 1.25rem;
+  border-bottom: 2px solid var(--gold);
+  padding-bottom: 0.3rem;
+  margin-bottom: 0.9rem;
+  display: inline-block;
+}
+.stamp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 0.6rem;
+}
+.stamp-cell {
+  border: 2px solid var(--parchment-dark);
+  border-radius: 4px;
+  padding: 0.6rem;
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--ink-mid);
+  min-height: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.stamp-cell.earned { border-color: var(--gold); color: var(--dark-ink); background: rgba(212, 175, 55, 0.1); }
+.stamp-cell .seal { font-size: 1.5rem; }
+.photo-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 0.6rem; }
+.photo-gallery figure { margin: 0; }
+.photo-gallery img { width: 100%; border-radius: 4px; border: 2px solid var(--gold-dark); }
+.photo-gallery figcaption { font-size: 0.78rem; color: var(--ink-mid); text-align: center; margin-top: 0.2rem; }
+.leaderboard-list { list-style: none; }
+.leaderboard-list li { display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid var(--parchment-dark); }
+
 /* ── Mobile ────────────────────────────────────────────────────────────── */
 @media (max-width: 600px) {
   .answer-buttons {

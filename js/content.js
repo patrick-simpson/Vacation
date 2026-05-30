@@ -5,6 +5,8 @@ const storyContent = {
       title: "Chapter 1: The Great Tower",
       lat: 43.6532,
       lng: -79.3832,
+      routeKm: 0,
+      frenchPhrase: { phrase: "Bonjour", translation: "Hello" },
       story: "The journey begins in the shadow of the CN Tower. Ahead lies the ancient asphalt river known as Highway 401.",
       trivia: [
         {
@@ -26,6 +28,8 @@ const storyContent = {
       title: "Chapter 2: The Wind Spinner",
       lat: 43.8384,
       lng: -79.0890,
+      routeKm: 35,
+      frenchPhrase: { phrase: "Le vent", translation: "The wind" },
       story: "Leaving the city limits, a massive white windmill spins lazily near the water, gathering the invisible power of the wind.",
       trivia: [
         {
@@ -41,6 +45,8 @@ const storyContent = {
       title: "Chapter 3: The City of Chariots",
       lat: 43.8971,
       lng: -78.8658,
+      routeKm: 60,
+      frenchPhrase: { phrase: "La voiture", translation: "The car" },
       story: "Rolling past Oshawa, you enter the automotive capital of Canada. Many of the metal chariots on the road were born right here.",
       trivia: [
         {
@@ -56,6 +62,8 @@ const storyContent = {
       title: "Chapter 4: The Radiant River",
       lat: 43.9512,
       lng: -78.3064,
+      routeKm: 100,
+      frenchPhrase: { phrase: "Le poisson", translation: "The fish" },
       story: "The road crosses the Ganaraska River. In the autumn, the water turns silver and pink with thousands of swimming fish.",
       trivia: [
         {
@@ -71,6 +79,8 @@ const storyContent = {
       title: "Chapter 5: The Giant Apple",
       lat: 44.0011,
       lng: -77.8792,
+      routeKm: 130,
+      frenchPhrase: { phrase: "La pomme", translation: "The apple" },
       story: "A strange and wondrous sight appears on the horizon. A massive, smiling red apple towers over the highway.",
       trivia: [
         {
@@ -86,6 +96,8 @@ const storyContent = {
       title: "Chapter 6: The Flying Metal Birds",
       lat: 44.0997,
       lng: -77.5798,
+      routeKm: 155,
+      frenchPhrase: { phrase: "L'avion", translation: "The airplane" },
       story: "The sky hums with the sound of engines. Massive gray airplanes circle the clouds, protecting the skies of the north.",
       trivia: [
         {
@@ -101,6 +113,8 @@ const storyContent = {
       title: "Chapter 7: The Limestone Fortress",
       lat: 44.2312,
       lng: -76.4860,
+      routeKm: 260,
+      frenchPhrase: { phrase: "Le château fort", translation: "The fortress" },
       story: "The highway brushes past Kingston, a city built of gray stone where the great St. Lawrence River finally begins.",
       trivia: [
         {
@@ -122,6 +136,8 @@ const storyContent = {
       title: "Chapter 8: The River of Castles",
       lat: 44.3296,
       lng: -76.1584,
+      routeKm: 290,
+      frenchPhrase: { phrase: "Les îles", translation: "The islands" },
       story: "The water to the south shatters into countless tiny islands. Some hold tiny cabins, while others hold mysterious stone castles.",
       trivia: [
         {
@@ -143,6 +159,8 @@ const storyContent = {
       title: "Chapter 9: The Dark Tunnel",
       lat: 44.5896,
       lng: -75.6855,
+      routeKm: 330,
+      frenchPhrase: { phrase: "Le tunnel", translation: "The tunnel" },
       story: "Deep beneath the ground near the river lies Canada's oldest railway tunnel, echoing with the ghosts of ancient steam trains.",
       trivia: [
         {
@@ -158,6 +176,8 @@ const storyContent = {
       title: "Chapter 10: The Time Machine",
       lat: 44.9058,
       lng: -75.1878,
+      routeKm: 375,
+      frenchPhrase: { phrase: "Le village", translation: "The village" },
       story: "You pass a place where time stands still. The people here still bake bread over fires and ride in wooden wagons.",
       trivia: [
         {
@@ -173,6 +193,8 @@ const storyContent = {
       title: "Chapter 11: The Royal Mountain",
       lat: 45.5017,
       lng: -73.5673,
+      routeKm: 540,
+      frenchPhrase: { phrase: "Bienvenue à Montréal!", translation: "Welcome to Montreal!" },
       story: "The signs change to French, the bridges rise high over the water, and the great Mount Royal welcomes you to the end of the quest.",
       trivia: [
         {
@@ -191,3 +213,6 @@ const storyContent = {
     }
   ]
 };
+
+// Total route length, used for the trip progress bar.
+storyContent.totalKm = storyContent.milestones[storyContent.milestones.length - 1].routeKm;

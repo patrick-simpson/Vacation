@@ -1,0 +1,19 @@
+{
+  "name": "Highway 401 Storybook Road Trip",
+  "short_name": "401 Storybook",
+  "description": "A storybook road-trip companion for Highway 401, Toronto to Montreal.",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fdf5e6",
+  "theme_color": "#2c1e16",
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

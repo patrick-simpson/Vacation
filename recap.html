@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trip Recap — 401 Storybook</title>
+  <meta name="theme-color" content="#2c1e16">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div id="score-display">Score: 0</div>
+
+  <nav class="main-nav">
+    <a href="index.html" data-i18n="nav.home">Home</a>
+    <a href="map.html" data-i18n="nav.map">Map</a>
+    <a href="game.html" data-i18n="nav.trivia">Trivia</a>
+    <a href="recap.html" class="active" data-i18n="nav.recap">Recap</a>
+  </nav>
+
+  <div class="page-inner">
+    <h1>Your Journey Recap</h1>
+
+    <div style="display:flex;gap:0.6rem;flex-wrap:wrap;margin-bottom:1.5rem;">
+      <button id="share-btn" class="btn btn-primary">📤 Share Recap</button>
+      <button id="finish-btn" class="btn">🏁 Finish Trip &amp; Save Scores</button>
+    </div>
+
+    <section class="recap-section" id="recap-scores"></section>
+    <section class="recap-section" id="recap-stamps"></section>
+    <section class="recap-section" id="recap-photos"></section>
+    <section class="recap-section" id="recap-memories"></section>
+    <section class="recap-section" id="recap-leaderboard"></section>
+  </div>
+
+  <script src="js/content.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/players.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/recap.js"></script>
+</body>
+</html>
